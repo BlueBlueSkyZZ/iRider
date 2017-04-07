@@ -30,6 +30,12 @@
         },
         "cordova-plugin-ble-central": {
             "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.mzy"
         }
     },
     "dependent_plugins": {

@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="css/icon.css">
     <title>Hello PhoneGap</title>
     <script type="text/javascript">
+        $.mobile.ajaxEnabled = false;//取消jquerymobile的自动ajax请求
+    </script>
+    <script type="text/javascript">
 
         function firstLoad() {
             document.addEventListener('deviceready', function () {
@@ -24,13 +27,13 @@
         function onVolumeDownKeyDown() {
             //alert("你按下了音量减");
             navigator.notification.vibrate(500);
-            loadImage();
+            mycaptureVideo2();
         } 
 
         function onVolumeUpKeyDown() {
             //alert("你按下了音量加");
             navigator.notification.vibrate(500);  
-            mycaptureVideo2();
+            loadImage();
         }
 
         function loadImage() {

@@ -1,0 +1,146 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CSS3实现Safari指针动画</title>
+
+	<link rel="stylesheet" href="css/compass.css" media="screen" type="text/css" />
+	<script type="text/javascript" src="cordova.js"></script>
+
+	<style type="text/css">
+		#needle {
+			position: absolute;
+			top: 73px;
+			left: 73px;
+			-webkit-transform: rotate(270deg);
+			-moz-transform: rotate(270deg);
+			-ms-transform: rotate(270deg);
+			-o-transform: rotate(270deg);
+			transform: rotate(200deg);/*控制稳定位置*/
+			z-index: 20;
+		}
+		#needle::before {
+			content: '\20';
+			position: absolute;
+			top: 0px;
+			left: -6px;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 70px 6px 0 6px;
+			border-color: white transparent transparent transparent;
+			box-shadow: 12px 4px 10px rgba(8, 42, 119, 0.2);
+			-webkit-transform-origin: top center;
+			-moz-transform-origin: top center;
+			-ms-transform-origin: top center;
+			-o-transform-origin: top center;
+			transform-origin: top center;
+			-webkit-animation: turn 2s 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+			-moz-animation: turn 2s 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+			animation: turn 2s 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+		}
+		#needle::after {
+			content: '\20';
+			position: absolute;
+			top: -70px;
+			left: -6px;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 0 6px 70px 6px;
+			border-color: transparent transparent #f03a39 transparent;
+			box-shadow: 12px 4px 10px rgba(8, 42, 119, 0.2);
+			-webkit-transform-origin: bottom center;
+			-moz-transform-origin: bottom center;
+			-ms-transform-origin: bottom center;
+			-o-transform-origin: bottom center;
+			transform-origin: bottom center;
+			-webkit-animation: turn 2s 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+			-moz-animation: turn 2s 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+			animation: turn 2s 1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+		}
+	</style>
+	<script type="text/javascript">
+
+		function init(){
+			myPosition();
+			setTimeout(myCompass,200);
+			
+		}
+
+		function myCompass(){
+			navigator.compass.watchHeading(onCompassSuccess,function(){alert("罗盘加载失败")},{frequency:500});
+		}
+		function onCompassSuccess(heading){
+            // alert(heading.magneticHeading);
+            console.log(heading.magneticHeading);
+            document.getElementById("needle").style.transform="rotate(" + (360-heading.magneticHeading) + "deg)";
+        }
+
+        function myPosition(){ 
+        	navigator.geolocation.watchPosition(onSuccess,onError,{frequency:500});
+        }
+
+        function onSuccess(position){//msg.innerHTML=
+        	console.log('纬度: '    + position.coords.latitude          + '\n' +
+        		'经度: '            + position.coords.longitude         + '\n' +
+        		'高度: '            + position.coords.altitude          + '\n' +
+        		'经纬度读取经度(米):' + position.coords.accuracy          + '\n' +
+        		'高度读取经度(米): '  + position.coords.altitudeAccuracy  + '\n' +
+        		'方向: '            + position.coords.heading           + '\n' +
+        		'速度: '            + position.coords.speed             + '\n' +
+        		'时间戳: '          + position.timestamp                + '\n');
+
+        	document.getElementById("latitude").value = "纬度" + position.coords.latitude;
+        	document.getElementById("longitude").value = "经度" + position.coords.longitude;
+        }
+
+        function onError(){
+        	alert("地理位置获取失败");
+        }
+    </script>
+
+    <script type="text/javascript">
+    	function change(){
+    		document.getElementById("needle").style.transform="rotate(" + "5" + "deg)";
+    	}
+    </script>
+</head>
+
+<body>
+
+	<div class="safari">
+		<div class="compass">
+			<div id="needle">
+				<div class="screw"></div>
+			</div>
+			<div class="dial">
+				<div class="clock clock-0-6">
+					<div class="clock-half"></div>
+				</div>
+				<div class="clock clock-1-7">
+					<div class="clock-half"></div>
+				</div>
+				<div class="clock clock-2-8">
+					<div class="clock-half"></div>
+				</div>
+				<div class="clock clock-3-9">
+					<div class="clock-half"></div>
+				</div>
+				<div class="clock clock-4-10">
+					<div class="clock-half"></div>
+				</div>
+				<div class="clock clock-5-11">
+					<div class="clock-half"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<a href="info.html"><input type="button" value="返回" ></a>
+	<input type="button" value="加载" onclick="init();">
+	<br>
+	<br>
+	<input type="text" value="纬度" id="latitude">
+	<input type="text" value="经度" id="longitude">
+</body>
+</html>

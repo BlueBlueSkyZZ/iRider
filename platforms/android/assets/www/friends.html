@@ -1,251 +1,460 @@
-﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>朋友圈</title>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="css/app.css">
-<script src="js/jquery.min.js" type="text/javascript"></script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>朋友圈</title>
 
-<style type="text/css">
-	* {cursor: pointer;}
-	.weui_mask_transition {
-		display: none;
-		position: fixed;
-		z-index: 1;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background: rgba(0, 0, 0, 0);
-		-webkit-transition: background .3s;
-		transition: background .3s;
-	}
-	.weui_fade_toggle {
-		background: rgba(0, 0, 0, 0.6);
-	}
-	.weui_actionsheet {
-		position: fixed;
-		left: 0;
-		bottom: 0;
-		-webkit-transform: translate(0, 100%);
-		-ms-transform: translate(0, 100%);
-		transform: translate(0, 100%);
-		-webkit-backface-visibility: hidden;
-		backface-visibility: hidden;
-		z-index: 2;
-		width: 100%;
-		background-color: #EFEFF4;
-		-webkit-transition: -webkit-transform .3s;
-		transition: transform .3s;
-	}
-	.weui_actionsheet_toggle {
-		-webkit-transform: translate(0, 0);
-		-ms-transform: translate(0, 0);
-		transform: translate(0, 0);
-	}
-	.weui_actionsheet_menu {
-		background-color: #FFFFFF;
-	}
-	.weui_actionsheet_cell:before {
-		content: " ";
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 1px;
-		border-top: 1px solid #D9D9D9;
-		-webkit-transform-origin: 0 0;
-		-ms-transform-origin: 0 0;
-		transform-origin: 0 0;
-		-webkit-transform: scaleY(0.5);
-		-ms-transform: scaleY(0.5);
-		transform: scaleY(0.5);
-	}
-	.weui_actionsheet_cell:first-child:before {
-		display: none;
-	}
-	.weui_actionsheet_cell {
-		position: relative;
-		padding: 10px 0;
-		text-align: center;
-		font-size: 18px;
-	}
-	.weui_actionsheet_cell.title {
-		color: #999;
-	}
-	.weui_actionsheet_action {
-		margin-top: 6px;
-		background-color: #FFFFFF;
-	}
-
-</style>
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" href="css/iconfont.css">
+<link rel="stylesheet prefetch" href="css/photoswipe.css">
+<link rel="stylesheet prefetch" href="css/default-skin/default-skin.css">
 
 </head>
-<body>
-<div id="actionSheet_wrap">
-<div class="weui_mask_transition" id="mask" style="display: none;"></div>
-<div class="weui_actionsheet" id="weui_actionsheet">
-	<div class="weui_actionsheet_menu">
-		<div class="weui_actionsheet_cell title">操作</div>
-		<div class="weui_actionsheet_cell play_pyq">返回个人信息</div>
+
+<body style="background-color: #fff;">
+
+	<div id="_contain">
+	
+		<div class="banner" style="position: relative;">
+			<div class="top_bg">
+				<img src="img/write.png" id="write" style="float:right;height: 25%;" >
+				<img src="img/back.png" id="back" style="float:left;height: 25%;" >
+			</div>
+			<div style="width:80px; height:80px;position: absolute;background-color: #F3F3F7;right: 10px;bottom: -30px;">
+				<img src="img/tx.jpg" style="width:96%; margin: 2%;">
+			</div>
+			<div style="position: absolute;right: 100px;bottom: 10px;color: white;">
+				在路上的愚人
+			</div>
+		</div>
+
+		<div class="contain" style="margin: 40px 0 0;">
+			<ul>
+				
+		<!-- 第一篇 -->
+				<li>
+					<div class="body">
+						<div class="logo">
+							<img src="img/tx2.jpg">
+						</div>
+						<div class="text">
+							<div class="title">小黄人</div>
+							<div class="txt">在宇宙中未知的地方有一个由12个人类殖民地组成的星际国家，人类为了方便制造了Cylons（机器人）为人类服务，但Cylons起来反抗人类，双方在血战之后停火，Cylons离开了殖民地去建立自己的家园。40年的和平让<span id="p1">...</span><span id="txt1" style="display:none;">人类放松了警惕，Cylons通过人类内部的间谍瘫痪了人类的防御系统，摧毁了Battlestar舰队，用核武器将殖民地的城市化为灰烬。Battlestar Galactica是唯一一艘幸存的航母，它在舰长Adama的指挥下带领几十艘各式各样的民船和近5万名幸存者逃离了殖民地的行星系统，开始了寻找人类的第13个殖民地——地球——的旅程。</span></div>
+							<div style="color: #88B1C5;" onclick="more(this,'1')">全文</div>
+							<div class="my-gallery" data-pswp-uid="1">
+							<figure><span>
+							  <a href="img/m3.jpg" data-size="670x712">
+							  <img style="width:80%;" src="img/th1.jpg">
+							  </a></span>
+							</figure>
+							  </div>
+							<div class="tm">
+								<div class="fl">1分钟前</div>
+								<div class="fr" id="click_comment1">评论</div>
+							</div>
+							<div class="cmt" id="cmt1">
+								<div class="fav line" id="line1"><i class="iconfont" id="like1">&#xe616;</i>小豪,李小爱</div>
+								<div><span>小豪：</span>什么</div>
+								<div><span>淘淘：</span>I use owl carousel to generate a slider, but at the same time I want to use Photoswipe, but I can't. When I use the Owl carousel plugin, the slider's inserted into the code with a speciel markup, where each item (image) has a class of .item and the image is located 3 layers deep into that div.</div>
+
+								<div id="new1"><span>在路上的愚人：</span><input value="快来评论吧" id="comment1" ></div>
+								<button id="send" style="display:none;">发送</button>
+							</div>
+						</div>
+					</div>
+				</li>
+				
+				<!-- 第二篇 -->
+				<li>
+					<div class="body">
+						<div class="logo"><img src="img/tx3.jpg"></div>
+						<div class="text">
+							<div class="title">小清新</div>
+							<div class="txt">买了一个更帅的电饭锅，可以手机远程操制的，开心</div>
+							<!--data-pswp-uid 是每个gallery的id不能重复-->
+							<div class="my-gallery" data-pswp-uid="2">
+							<figure>
+								<div><a href="img/s5.jpg" data-size="286x220"><img style="height:100%;" src="img/s5.jpg"></a></div>
+								<figcaption style="display:none;">在这里可增加图片描述</figcaption>
+							</figure>
+							<figure>
+								<div><a href="img/sb1.jpg" data-size="640x426"><img style="height:100%;" src="img/sb1.jpg"></a></div>
+								<figcaption style="display:none;">在这里可增加图片描述</figcaption>
+							</figure>
+							<figure>
+								<div><a href="img/sb3.jpg" data-size="768x1024"><img style="width:100%;" src="img/sb3.jpg"></a></div>
+								<figcaption style="display:none;">在这里可增加图片描述</figcaption>
+							</figure>
+							<figure>
+								<div><a href="img/sb4.jpg" data-size="900x596"><img style="height:100%;" src="img/sb4.jpg"></a></div>
+								<figcaption style="display:none;">在这里可增加图片描述</figcaption>
+							</figure>
+							<figure>
+								<div><a href="img/y1.jpeg" data-size="1200x1200"><img  style="height:100%;" src="img/y1.jpeg"></a></div>
+								<figcaption style="display:none;">在这里可增加图片描述5在这里可增加图片描述5在这里可增加图片描述5</figcaption>
+							</figure>
+							</div>
+							<div class="tm">
+								<div class="fl">2分钟前</div>
+								<div class="fr">评论</div>
+							</div>
+							<div class="cmt">
+								<div class="fav"><i class="iconfont">&#xe616;</i>ANTHONY,☆Sanly☆</div>
+								<div><span>ANTHONY：</span>这么先进，和我家的那台一样，打个电话，照样有饭吃，一键式，还带做菜功能，还能洗碗聊天晾衣服</div>
+								<div><span>☆Sanly☆:</span>远程？还有洗米放水功能？</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!--  ---------------------------------------------------------------------------------------------------------------------------------------------  -->
+				
+				
+			</ul>
+		</div>
+
 	</div>
-	<div class="weui_actionsheet_action">
-		<div class="weui_actionsheet_cell" id="actionsheet_cancel">取消</div>
-	</div>
-</div>
-</div>
-<div style="margin:0 auto;display:none;">
-<img class="data-avt" src="images/0.jpg">
-</div>
-<header>
-<img id="bg" src="images/bg.jpg">
-<p id="user-name" class="data-name">BlueBlueSky</p>
-<img id="avt" class="data-avt" src="images/0.jpg">
-</header>
-<div id="main">
-<div id="list">
-	<ul>
-		<li>
-			<div class="po-avt-wrap">
-				<img class="po-avt data-avt" src="images/0.jpg">
-			</div>
-			<div class="po-cmt">
-				<div class="po-hd">
-					<p class="po-name"><span class="data-name">BlueBlueSky</span></p>
-					<div class="post">
-						<p>凌晨四点</p>
-						<p>
-							<img class="list-img" src="images/jt1.jpg" style="height: 80px;">
-							
-							<img class="list-img data-avt" src="images/0.jpg" style="height: 80px;">
-						</p>
-					</div>
-					<p class="time">刚刚</p><img class="c-icon" src="images/c.png">
-				</div>
-				<div class="r"></div>
-				<div class="cmt-wrap">
-					<div class="like"><img src="images/l.png">GreyGreySmall、豆豆...</div>
-					<div class="cmt-list">
-						
-						<p><span>王尼玛：</span>这是哪里啊？？</p>
-						<p>
-							<span class="data-name">BlueBlueSky</span>
-							回复
-									<span>
-										王尼玛：
-									</span>
-										凌晨四点的阳澄湖
-						</p>
-						<p><span>豆豆：</span>😘下次带我～</p>
-					</div>
-				</div>
-			</div>
-		</li>
-		
-		<li>
-			<div class="po-avt-wrap">
-				<img class="po-avt data-avt" src="images/0.jpg">
-			</div>
-			<div class="po-cmt">
-				<div class="po-hd">
-					<p class="po-name"><span class="data-name">BlueBlueSky</span></p>
-					<div class="post">
-						<p>按捺不住自己内心的躁动</p>
-						
-					</div>
-					<p class="time">六个小时前</p><img class="c-icon" src="images/c.png">
-				</div>
-				<div class="r"></div>
-				<div class="cmt-wrap">
-					<div class="like"><img src="images/l.png">GreyGreySmall、豆豆、王尼玛、王尼美...</div>
-					<div class="cmt-list">
-						
-						<p><span>王尼玛：</span>又想搞个大新闻</p>
-						<p>
-							<span class="data-name">BlueBlueSky</span>
-							回复
-									<span>
-										王尼玛：
-									</span>
-									滚！！
-						</p>
-						
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
-</div>
+	
+	<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
 
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
-<script>
-</script>
-
-
-<script>
-function gotoplay(scene) {
-	var gourl = "info.html";
-	location.href = gourl;
-}
-function safetostring(str) {
-	return String(str).replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
-}
-
-//$("#list").html($("#scene").html());
-
-setTimeout(function () {
-	// $(".data-name").text(safetostring(nickname));
-	//$(".data-avt").attr("src", headimgurl);
-	var cw = $('.list-img').width();
-	$('.list-img').css({'height': cw + 'px'});
-}, 0);
-
-$(window).resize(function () {
-	var cw = $('.list-img').width();
-	$('.list-img').css({'height': cw + 'px'});
-});
-
-
-$(document.body).show();
-
-
-function hideActionSheet(weuiActionsheet, mask) {
-	weuiActionsheet.removeClass('weui_actionsheet_toggle');
-	mask.removeClass('weui_fade_toggle');
-	weuiActionsheet.on('transitionend', function () {
-		mask.hide();
-	}).on('webkitTransitionEnd', function () {
-		mask.hide();
-	})
-}
-function showActionSheet() {
-	var mask = $('#mask');
-	var weuiActionsheet = $('#weui_actionsheet');
-	weuiActionsheet.addClass('weui_actionsheet_toggle');
-	mask.show().addClass('weui_fade_toggle').click(function () {
-		hideActionSheet(weuiActionsheet, mask);
-	});
-	$('#actionsheet_cancel').click(function () {
-		hideActionSheet(weuiActionsheet, mask);
-	});
-	weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
-}
-$('#list').not(".noplayimg").on('click', function () {
-	showActionSheet();
-});
-$('img').not(".noplayimg").on('click', function (e) {
-	showActionSheet();
-});
-$('.play_pyq').on('click', function () {
-	var scene = $(this).data("scene");
-	gotoplay(scene);
-});
-</script>
-
-
 </body>
+<script src="js/jquery.min.js"></script>
+<script src="js/photoswipe.js"></script>
+<script src="js/photoswipe-ui-default.min.js"></script>
+<script type="text/javascript">
+	var initPhotoSwipeFromDOM = function(gallerySelector) {
+
+    // 解析来自DOM元素幻灯片数据（URL，标题，大小...）
+    // (children of gallerySelector)
+    var parseThumbnailElements = function(el) {
+        var thumbElements = el.childNodes,
+            numNodes = thumbElements.length,
+            items = [],
+            figureEl,
+            linkEl,
+            size,
+            item,
+			divEl;
+
+        for(var i = 0; i < numNodes; i++) {
+
+            figureEl = thumbElements[i]; // <figure> element
+
+            // 仅包括元素节点
+            if(figureEl.nodeType !== 1) {
+                continue;
+            }
+			divEl = figureEl.children[0];
+            linkEl = divEl.children[0]; // <a> element
+			
+            size = linkEl.getAttribute('data-size').split('x');
+
+            // 创建幻灯片对象
+            item = {
+                src: linkEl.getAttribute('href'),
+                w: parseInt(size[0], 10),
+                h: parseInt(size[1], 10)
+            };
+
+
+
+            if(figureEl.children.length > 1) {
+                // <figcaption> content
+                item.title = figureEl.children[1].innerHTML; 
+            }
+
+            if(linkEl.children.length > 0) {
+                // <img> 缩略图节点, 检索缩略图网址
+                item.msrc = linkEl.children[0].getAttribute('src');
+            } 
+
+            item.el = figureEl; // 保存链接元素 for getThumbBoundsFn
+            items.push(item);
+        }
+
+        return items;
+    };
+
+    // 查找最近的父节点
+    var closest = function closest(el, fn) {
+        return el && ( fn(el) ? el : closest(el.parentNode, fn) );
+    };
+
+    // 当用户点击缩略图触发
+    var onThumbnailsClick = function(e) {
+        e = e || window.event;
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+        var eTarget = e.target || e.srcElement;
+
+        // find root element of slide
+        var clickedListItem = closest(eTarget, function(el) {
+            return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+        });
+
+        if(!clickedListItem) {
+            return;
+        }
+
+        // find index of clicked item by looping through all child nodes
+        // alternatively, you may define index via data- attribute
+        var clickedGallery = clickedListItem.parentNode,
+            childNodes = clickedListItem.parentNode.childNodes,
+            numChildNodes = childNodes.length,
+            nodeIndex = 0,
+            index;
+
+        for (var i = 0; i < numChildNodes; i++) {
+            if(childNodes[i].nodeType !== 1) { 
+                continue; 
+            }
+
+            if(childNodes[i] === clickedListItem) {
+                index = nodeIndex;
+                break;
+            }
+            nodeIndex++;
+        }
+
+
+
+        if(index >= 0) {
+            // open PhotoSwipe if valid index found
+            openPhotoSwipe( index, clickedGallery );
+        }
+        return false;
+    };
+
+    // parse picture index and gallery index from URL (#&pid=1&gid=2)
+    var photoswipeParseHash = function() {
+        var hash = window.location.hash.substring(1),
+        params = {};
+
+        if(hash.length < 5) {
+            return params;
+        }
+
+        var vars = hash.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            if(!vars[i]) {
+                continue;
+            }
+            var pair = vars[i].split('=');  
+            if(pair.length < 2) {
+                continue;
+            }           
+            params[pair[0]] = pair[1];
+        }
+
+        if(params.gid) {
+            params.gid = parseInt(params.gid, 10);
+        }
+
+        return params;
+    };
+
+    var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+        var pswpElement = document.querySelectorAll('.pswp')[0],
+            gallery,
+            options,
+            items;
+
+        items = parseThumbnailElements(galleryElement);
+
+        // 这里可以定义参数
+        options = {
+          barsSize: { 
+            top: 100,
+            bottom: 100
+          }, 
+		   fullscreenEl : false,
+			shareButtons: [
+			{id:'wechat', label:'分享微信', url:'#'},
+			{id:'weibo', label:'新浪微博', url:'#'},
+			{id:'download', label:'保存图片', url:'{{raw_image_url}}', download:true}
+			],
+
+            // define gallery index (for URL)
+            galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+
+            getThumbBoundsFn: function(index) {
+                // See Options -> getThumbBoundsFn section of documentation for more info
+                var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                    rect = thumbnail.getBoundingClientRect(); 
+
+                return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+            }
+
+        };
+
+        // PhotoSwipe opened from URL
+        if(fromURL) {
+            if(options.galleryPIDs) {
+                // parse real index when custom PIDs are used 
+                for(var j = 0; j < items.length; j++) {
+                    if(items[j].pid == index) {
+                        options.index = j;
+                        break;
+                    }
+                }
+            } else {
+                // in URL indexes start from 1
+                options.index = parseInt(index, 10) - 1;
+            }
+        } else {
+            options.index = parseInt(index, 10);
+        }
+
+        // exit if index not found
+        if( isNaN(options.index) ) {
+            return;
+        }
+
+        if(disableAnimation) {
+            options.showAnimationDuration = 0;
+        }
+
+        // Pass data to PhotoSwipe and initialize it
+        gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery.init();
+    };
+
+    // loop through all gallery elements and bind events
+    var galleryElements = document.querySelectorAll( gallerySelector );
+
+    for(var i = 0, l = galleryElements.length; i < l; i++) {
+        galleryElements[i].setAttribute('data-pswp-uid', i+1);
+        galleryElements[i].onclick = onThumbnailsClick;
+    }
+
+    // Parse URL and open gallery if it contains #&pid=3&gid=1
+    var hashData = photoswipeParseHash();
+    if(hashData.pid && hashData.gid) {
+        openPhotoSwipe( hashData.pid ,  galleryElements[ hashData.gid - 1 ], true, true );
+    }
+	};
+
+	// execute above function
+	initPhotoSwipeFromDOM('.my-gallery');
+
+	
+	$(".my-gallery>figure>div").each(function(){
+		$(this).height($(this).width());
+	});
+	function more(obj,id) {
+ 		if ($('#txt'+id).is(":hidden")) {
+ 			$('#p'+id).hide();
+ 	 		$('#txt'+id).show();
+ 	 		obj.innerHTML='收起';
+ 		} else {
+ 			$('#p'+id).show();
+ 	 		$('#txt'+id).hide();
+ 	 		obj.innerHTML='全文';
+ 		}
+ 	}
+</script>
+
+<script >
+//进入编写说说界面
+$("#write").click(function(){
+	window.location.href="../write.jsp";
+});
+$("#back").click(function(){
+	history.back();
+});
+$("#click_comment1").click(function(){
+	$("#comment1").focus();
+	$("#comment1").attr("value","");
+	$("#send").show();
+});
+$('#comment1').blur(function(){
+	$("#comment1").attr("value","快来评论吧");
+	// 此处有一点小问题，如果用户输入的评论为 “快来评论吧”，发送按钮还是会消失
+	if($("#comment1").val()!= "快来评论吧" &&$("#comment1").val()!="" ){
+			//alert($("#comment1").val());
+			$("#send").show();
+	}else{
+			$("#send").hide();
+			$("#comment1").attr("value","快来评论吧");
+	}
+});
+$("#comment1").focus(function(){
+	$("#comment1").attr("value","");
+	$("#send").show();
+});
+$("#like1").click(function(){
+	//alert(123);
+	alert($("#line1").text());
+});
+$("#send").click(function(){
+	var content = $("#comment1").val();
+	$("#new1").before("<div><span>在路上的愚人：</span>"+content+"</div>");
+    $("#send").hide();
+});
+</script>
 </html>
