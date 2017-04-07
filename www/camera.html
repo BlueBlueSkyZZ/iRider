@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+    <script type="text/javascript" charset="utf-8" src="js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <title>Hello PhoneGap</title>
+    <script type="text/javascript">
+
+        function firstLoad() {
+            document.addEventListener('deviceready', function () {
+            // cordova.plugins.notification.local is now available
+        }, false);
+            // 注册事件监听器
+            document.addEventListener("volumedownbutton", onVolumeDownKeyDown, false);
+            document.addEventListener("volumeupbutton", onVolumeUpKeyDown, false);
+        }
+
+        // 处理声音减小按钮按下的操作
+        function onVolumeDownKeyDown() {
+            //alert("你按下了音量减");
+            navigator.notification.vibrate(500);
+            loadImage();
+        } 
+
+        function onVolumeUpKeyDown() {
+            //alert("你按下了音量加");
+            navigator.notification.vibrate(500);  
+            mycaptureVideo2();
+        }
+
+        function loadImage() {
+            //拍照并显示在屏幕
+            navigator.camera.getPicture(onLoadImageSuccess, onLoadImageFail, {destinationType: Camera.DestinationType.DATA_URL});
+        }
+
+        //拍照成功后回调
+        function onLoadImageSuccess(imageURI) {
+            navigator.notification.beep(1);  
+            //这里的图片经过了base64编码
+            var src = "data:image/jpeg;base64," + imageURI;
+            //console.log("imageURI" + imageURI);
+            $("#getImage").attr("src", src);
+            $("#getImage").show();
+        }
+        //所有获取图片失败都回调此函数
+        function onLoadImageFail(message) {
+            alert("拍照失败，原因：" + message, null, "警告");
+        }
+
+        
+         //采集视频
+         function mycaptureVideo2(){
+            navigator.device.capture.captureVideo(captureSuccess,captureError);
+        }        
+
+        //视频采集成功
+        function captureSuccess(mediaFiles){
+            navigator.notification.beep(1);
+            alert("采集成功")
+            var i, len;
+            console.log("mediaFiles" + mediaFiles);
+            for(i = 0, len = mediaFiles.length; i < len; i++){
+                uploadFile(mediaFiles[i]);
+            }
+        }
+
+        //视频采集失败
+        function captureError(error){
+            alert("采集失败");
+        }
+
+        //上传采集到的文件
+        function uploadFile(mediaFile){
+            var ft = new FileTransfer(),
+            path = mediaFile.fullPath,
+            name = mediaFile.name;
+            //上传操作
+            ft.upload(path, "http://115.159.169.189", 
+                function(){
+                    console.log("上传成功" + path);
+                },
+                function(){
+                    console.log("上传失败" + path);
+                },{fileName:name}
+                );
+        }
+    </script>
+</head>
+<body onload="firstLoad();">
+    <!-- <h1>Hello PhoneGap</h1> -->
+    <div data-role="page" id="index1">
+        <div data-role="header" data-position="fixed">
+            <h1>照相机</h1>
+        </div>
+
+        <div data-role="content">
+            <p>
+                <input type="button" value="拍照并显示" onclick="loadImage();"/>
+                <img src="" id="getImage" style="display: none;width: 120px;height: 120px;"/>
+            </p>
+            
+            <p>
+                <input type="button" value="视频采集" onclick="mycaptureVideo2();">
+            </p>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="map.html" data-icon="map" data-transition="pop">地图</a></li>
+                    <li><a href="weather.html" data-icon="weather" data-transition="pop">天气</a></li>
+                    <li><a href="camera.html" data-icon="camera" data-transition="pop">相机</a></li>
+                    <li><a href="friends.html" data-icon="friends" data-transition="pop">朋友圈</a></li>
+                    <li><a href="info.html" data-icon="bullets" data-transition="pop">个人信息</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    </html>

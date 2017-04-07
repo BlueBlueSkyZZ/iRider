@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <script type="text/javascript">
+        $.mobile.ajaxEnabled = false;//取消jquerymobile的自动ajax请求
+    </script>
+    <style type="text/css">
+        #myhead{
+            height: 50px;
+        }
+    </style>
+</head>
+<body >
+
+
+    <!--第一个页面地图-->
+    <div data-role="page" id="index1" >
+        <div data-role="header" data-position="fixed">
+            <h1>个人信息</h1>
+        </div>
+
+        <div data-role="content">
+         <div id="myhead">
+          <span style="float:left;"><img src="img/2.jpg" alt="头像"></span> 
+          <span style="float:left;"><h2>欢迎你，BlueBlueSky</h2></span>
+          
+      </div>
+
+      <div>
+
+         <ul data-role="listview" data-inset="true">
+			<li></li>
+            <li>
+				<a href="#">
+					<h2>基本信息</h2>
+					<p>骑行时间:5年</p>
+					<p>地区：常州</p>
+					<p class="ui-li-aside">2017年3月8日 注册</p>
+				</a>
+			</li>
+            <br>
+            <li><a href="#">我最爱的路线</a></li>
+            <br>
+            <li><a href="#">罗盘</a></li>
+            <br>
+            <li><a href="bluetooth.html">设置</a></li>
+            <br>
+            
+        </ul>
+    </div>
+</div>
+
+<div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="map.html" data-icon="map" data-transition="pop">地图</a></li>
+            <li><a href="weather.html" data-icon="weather" data-transition="pop">天气</a></li>
+            <li><a href="camera.html" data-icon="camera" data-transition="pop">相机</a></li>
+            <li><a href="friends.html" data-icon="friends" data-transition="pop">朋友圈</a></li>
+            <li><a href="info.html" data-icon="bullets" data-transition="pop">个人信息</a></li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

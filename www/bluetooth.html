@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+	<script type="text/javascript" src="cordova.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+	<script type="text/javascript" charset="utf-8" src="js/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/icon.css">
+	<title>ble</title>
+
+	<script type="text/javascript">
+
+		var count = 0;
+		var device_id = "84:EB:18:0F:A6:6B";//ibeacon的MAC地址
+		var myDevice;
+		function myScan(){
+			console.log("scan");
+			//ble.scan([], 100, mySuccess(), myFailure());
+			ble.scan([], 10, function(device) 
+			{
+				console.log("device");
+				myDevice = device;
+				console.log(JSON.stringify(device));
+				alert("scan\n"+JSON.stringify(device));
+			}, function(data){
+				console.log(data);
+			});
+			console.log("scan运行完毕");
+		}
+
+		function myStartScan(){
+			console.log("startScan");
+			//ble.startScan([], mySuccess(), myFailure());
+
+			ble.startScanWithOptions([],
+				{ reportDuplicates: false },
+				function(device){
+					count++;
+					console.log("是否触发");
+					myDevice = device;
+					console.log(JSON.stringify(device));
+					alert("scan\n"+JSON.stringify(device));
+				},
+				myFailure());
+
+			setTimeout(function() {
+				ble.stopScan(
+					function() { 
+						console.log("Scan complete");
+						alert("Scan complete" + "\n" + "发现" + (count) + "台设备");
+					},
+					function() { console.log("stopScan failed"); }
+					);
+			}, 5000);
+		}
+
+		function myEnable(){
+			ble.isEnabled(
+				function() {
+					console.log("Bluetooth is Enabled");
+				},
+				function() {
+					console.log("Bluetooth is *not* Enabled");
+				}
+				);
+		}
+
+		function myenable(){
+			ble.enable(
+				function() {
+					console.log("Bluetooth is enabled");
+					alert("蓝牙已经准备好了");
+					ble.startStateNotifications(
+						function(state) {
+							console.log("Bluetooth is " + state);
+						}
+						);
+					//ble.showBluetoothSettings();//查看蓝牙设置
+				},
+				function() {
+					alert("蓝牙尚未开启");
+					console.log("The user did *not* enable Bluetooth");
+				}
+				);
+		}
+
+		function settings(){
+			ble.showBluetoothSettings();//查看蓝牙设置
+		}
+
+		function myConnect(){
+			console.log("开始连接");
+			//myDevice = "98:D3:31:90:8E:F5";
+			ble.connect(myDevice.id, 
+				function(){
+					console.log("connect success：" + myDevice.id)},
+					function(){
+						console.log("connect fail：" + myDevice.id)});
+		}
+		
+		function myisConnected(){
+			//84:EB:18:0F:A6:6B   ibeacon d8:5d:e2:20:10:3e MA   "98:d3:31:90:8e:f5" 蓝牙
+			var device_id2 = "FDA50693-A4E2-4FB1-AFCF-C6EB07647825";
+			ble.isConnected(
+				device_id2,
+				function() {
+					console.log("Peripheral is connected:" + device_id2);
+					alert("连接成功" + device_id2);
+				},
+				function() {
+					console.log("Peripheral is *not* connected:" + device_id2);
+					alert("连接失败" + device_id2);
+				}
+				);
+		}
+		
+
+
+		function mySuccess(device){
+			//var adData = new Uint8Array(peripheral.advertising);
+			console.log("找到设备");
+			//console.log(JSON.stringify(adData));
+			// function(device){
+			// 	if(device.name){
+			// 		DeviceFactory.addDevice({ 'id': device.id, 'name': device.name });
+			// 	}
+			// }
+			console.log(device);
+			console.log(++count);
+		}
+
+		function myFailure(){
+			console.log("can\'t find");
+		}
+
+		function showJSON(){
+			alert(myDevice.name + "-" +
+				myDevice.id + "-" +
+				myDevice.advertising + "-" +
+				myDevice.rssi
+				);
+		}
+
+		function myRead(){
+			ble.read(myDevice.id, service_uuid, characteristic_uuid, function(){
+				console.log("read success");
+			}, function(){
+				console.log("read failure");
+			});
+		}
+
+
+		function stringToBytes(string) {
+			var array = new Uint8Array(string.length);
+			for (var i = 0, l = string.length; i < l; i++) {
+				array[i] = string.charCodeAt(i);
+			}
+			return array.buffer;
+		}
+
+
+		function bytesToString(buffer) {
+			return String.fromCharCode.apply(null, new Uint8Array(buffer));
+		}
+	</script>
+</head>
+<body>
+	<div data-role="page" id="index1">
+		<div data-role="header" data-position="fixed">
+			<h1>设置</h1>
+		</div>
+
+		<div data-role="content">
+			<input type="button" onclick="myStartScan();" value="开始扫描"><br>
+			
+			<input type="button" onclick="myenable();" value="蓝牙是否准备"><br>
+			<input type="button" onclick="settings();" value="查看蓝牙设置"><br>
+			
+			<input type="button" onclick="myisConnected();" value="是否连接成功"><br>
+			
+		</div>
+
+
+
+	</body>
+	</html>

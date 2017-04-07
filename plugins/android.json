@@ -1,0 +1,49 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-ble-central": {
+            "PACKAGE_NAME": "com.mzy"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.mzy"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.mzy"
+        }
+    }
+}
